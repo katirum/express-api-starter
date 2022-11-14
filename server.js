@@ -23,6 +23,17 @@ app.get("/nominations", (req, res) => {
   res.json(data)
 })
 
+app.get("/filmyear/:year", (req, res) => {
+  const filmyear = req.params.year
+  const showWon = req.query.won
+  let filmYear = data.filter((item) => item.year_film === +filmyear)
+  if (showWon){
+    filmYear = filmYear.filter((item) => item.win)
+  }
+
+  res.json(filmYear)
+})
+
 app.get("/year/:year", (req, res) => {
   const year = req.params.year
   const showWon = req.query.won
